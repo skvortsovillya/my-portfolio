@@ -16,7 +16,7 @@
 
   <body>
 
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="{% url 'home' %}">neimanovskii</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -35,51 +35,41 @@
     </ul>
   </div>
 </nav>
-    <main role="main">
 
+    <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Hello, I'm Bohdan</h1>
-          <p class="lead text-muted">Hey, my name is Bohdan Neimanovkii and I love to make Django websites. If you need pretty look and useful product, just email me. </p>
-          <p>
-            <a href="mailto:skvortsovillya@gmail.com" class="btn btn-primary my-2">Email Me</a>
-          </p>
+          <h1 class="jumbotron-heading">My Blog</h1>
+            </br>
+            </br>
+          <h2>Latest posts</h2>
         </div>
       </section>
+   {% for blog in blogs.all %}
 
       <div class="album py-5 bg-light">
         <div class="container">
-
-          <div class="row">
-           {% for job in jobs.all %}
-           <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top"  src="{{ job.image.url }}">
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-           {% endfor %}
-
+          <p><a href="{% url 'details' blog.id %}"><img class="img-thumbnail" src="{{ blog.image.url}}" height="200", width="200"></a></p>
+           <h3>{{ blog.title }}</h3>
+            </br>
+            <small>{{ blog.pub_date_pretty }}</small>
+            </br>
+            </br>
+           {{ blog.summary }}
+            </br>
           </div>
         </div>
       </div>
 
+   {% endfor %}
+
     </main>
 
-    <footer class="text-muted">
+    <blogter class="text-muted">
       <div class="container text-center">
         <p>© Bohdan Neimanovskii {% now "Y" %}</p>
       </div>
-    </footer>
+    </blogter>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
